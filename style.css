@@ -1,0 +1,151 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Urdu Font */
+@font-face {
+  font-family: 'Mehr Nastaliq Web';
+  src: url('fonts/MehrNastaliqWeb.woff') format('woff');
+}
+
+/* Base Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f2f5;
+}
+
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.tab {
+  padding: 15px 25px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+
+.tab:hover, .tab.active {
+  background: #4CAF50;
+  color: white;
+}
+
+.mcq-container {
+  margin: 30px auto;
+  max-width: 900px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.mcq h3 {
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.mcq h3.urdu-text {
+  font-family: 'Mehr Nastaliq Web', serif;
+  font-size: 24px;
+  line-height: 1.6;
+}
+
+.mcq ol {
+  counter-reset: mcq-counter;
+  margin-left: 20px;
+}
+
+.mcq ol li {
+  position: relative;
+  list-style: none;
+  margin-bottom: 12px;
+  padding: 12px 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.mcq ol li:hover {
+  background: #e0e0e0;
+}
+
+.mcq ol li::before {
+  content: counter(mcq-counter, upper-alpha);
+  counter-increment: mcq-counter;
+  position: absolute;
+  left: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+}
+
+.feedback {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.correct {
+  background: #d4edda !important;
+}
+
+.wrong {
+  background: #f8d7da !important;
+}
+
+/* Pagination */
+.pagination {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.pagination-btn {
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: none;
+  background: #ffffff;
+  color: #4CAF50;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pagination-btn:hover {
+  background: #4CAF50;
+  color: white;
+}
+
+.pagination-btn.active {
+  background: #4CAF50;
+  color: white;
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Who is the prime minister of Pakistan?",
+    "options": [
+      "Imran Khan",
+      "Shehbaz Sharif",
+      "Bilawal Bhutto",
+      "Siraj-ul-Haq"
+    ],
+    "correctAnswer": "Shehbaz Sharif",
+    "category": "Pakistan Studies"
+  },
+  {
+    "question": "اسلام کے کتنے ارکان ہیں؟",
+    "options": [
+      "4",
+      "5",
+      "11",
+      "30"
+    ],
+    "correctAnswer": "5",
+    "category": "Islamiyat"
+  },
+  {
+    "question": "When was Pakistan established?",
+    "options": [
+      "1945",
+      "1947",
+      "1948",
+      "1965"
+    ],
+    "correctAnswer": "1948",
+    "category": "Pakistan Studies"
+  }
+]

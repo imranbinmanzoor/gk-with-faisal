@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add MCQs — Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #f0f2f5;
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    input, textarea, select, button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .success {
+      background: #d4edda;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      color: #155724;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Add New MCQ</h1>
+
+  <div id="success" class="success">MCQ added successfully!</div>
+
+  <form id="mcqForm">
+    <label>Question:</label>
+    <textarea name="question" required></textarea>
+
+    <label>Option A:</label>
+    <input type="text" name="optionA" required>
+
+    <label>Option B:</label>
+    <input type="text" name="optionB" required>
+
+    <label>Option C:</label>
+    <input type="text" name="optionC" required>
+
+    <label>Option D:</label>
+    <input type="text" name="optionD" required>
+
+    <label>Correct Answer:</label>
+    <select name="correctAnswer" required>
+      <option value="">-- Select Correct Option --</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+    </select>
+
+    <label>Category:</label>
+    <select name="category" required>
+      <option value="General Knowledge">General Knowledge</option>
+      <option value="Pakistan Studies">Pakistan Studies</option>
+      <option value="Islamiyat">Islamiyat</option>
+    </select>
+
+    <button type="submit">Add MCQ</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('mcqForm');
+    const success = document.getElementById('success');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const data = {
+        question: form.question.value.trim(),
+        options: [
+          form.optionA.value.trim(),
+          form.optionB.value.trim(),
+          form.optionC.value.trim(),
+          form.optionD.value.trim()
+        ],
+        correctAnswer: form['option' + form.correctAnswer.value].value.trim(),
+        category: form.category.value
+      };
+
+      const res = await fetch('/mcqs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        success.style.display = 'block';
+        form.reset();
+        setTimeout(() => success.style.display = 'none', 3000);
+      } else {
+        alert('Something went wrong.');
+      }
+    });
+  </script>
+
+</body>
+</html>
