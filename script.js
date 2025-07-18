@@ -3,7 +3,7 @@ let currentPage = 1;
 const mcqsPerPage = 10;
 let currentCategory = 'General Knowledge';
 
-fetch('mcqs.json')
+fetch('https://gk-mcqs-backend.onrender.com/mcqs')
   .then(res => res.json())
   .then(data => {
     allMcqs = data;
@@ -34,13 +34,16 @@ function renderMCQs(category, page) {
     div.innerHTML = `<h3 class="${questionClass}">${start + index + 1}. ${mcq.question}</h3>`;
 
     const ol = document.createElement('ol');
+
     mcq.options.forEach(opt => {
       const li = document.createElement('li');
       li.textContent = opt;
       li.style.position = 'relative';
+
       li.addEventListener('click', () => {
         const existing = li.querySelector('.feedback');
-        if (existing) existing.remove();
+        if (existing) return; // Prevent multiple clicks
+
         const feedback = document.createElement('span');
         feedback.className = 'feedback';
         feedback.style.position = 'absolute';
@@ -51,7 +54,8 @@ function renderMCQs(category, page) {
         feedback.style.opacity = '0';
         feedback.style.transition = 'opacity 0.5s ease';
 
-        if (li.textContent === mcq.correctAnswer) {
+        // ✅ Trim both option and answer to avoid whitespace errors
+        if (li.textContent.trim() === mcq.correctAnswer.trim()) {
           li.classList.add('correct');
           feedback.textContent = 'Correct!';
           feedback.style.color = '#28a745';
@@ -60,9 +64,12 @@ function renderMCQs(category, page) {
           feedback.textContent = 'Incorrect!';
           feedback.style.color = '#dc3545';
         }
+
         li.appendChild(feedback);
+        li.style.pointerEvents = 'none'; // ✅ Prevent re-clicking
         setTimeout(() => feedback.style.opacity = '1', 50);
       });
+
       ol.appendChild(li);
     });
 
@@ -78,7 +85,6 @@ function renderPagination(totalMcqs, currentPage) {
   paginationContainer.innerHTML = '';
 
   const totalPages = Math.ceil(totalMcqs / mcqsPerPage);
-
   if (totalPages <= 1) return;
 
   for (let i = 1; i <= totalPages; i++) {
@@ -100,12 +106,11 @@ tabs.forEach(tab => {
   tab.addEventListener('click', function() {
     tabs.forEach(t => t.classList.remove('active'));
     this.classList.add('active');
-    const category = this.getAttribute('data-category');
-    currentCategory = category;
+    currentCategory = this.getAttribute('data-category');
     currentPage = 1;
-    renderMCQs(category, currentPage);
+    renderMCQs(currentCategory, currentPage);
   });
 });
 
-// Activate first tab on load
+// ✅ Activate first tab on load
 document.querySelector('.tab[data-category="General Knowledge"]').classList.add('active');
