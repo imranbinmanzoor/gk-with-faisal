@@ -9,6 +9,7 @@
       max-width: 800px;
       margin: 40px auto;
       background: #f0f2f5;
+      font-family: 'Poppins', sans-serif;
     }
     form {
       background: white;
@@ -27,6 +28,7 @@
       color: white;
       font-weight: bold;
       cursor: pointer;
+      border: none;
     }
     .success {
       background: #d4edda;
@@ -42,7 +44,7 @@
 
   <h1>Add New MCQ</h1>
 
-  <div id="success" class="success">MCQ added successfully!</div>
+  <div id="success" class="success">✅ MCQ added successfully!</div>
 
   <form id="mcqForm">
     <label>Question:</label>
@@ -60,7 +62,7 @@
     <label>Option D:</label>
     <input type="text" name="optionD" required>
 
-    <label>Correct Answer:</label>
+    <label>Correct Answer (select the correct option):</label>
     <select name="correctAnswer" required>
       <option value="">-- Select Correct Option --</option>
       <option value="A">A</option>
@@ -86,19 +88,24 @@
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
+      const options = [
+        form.optionA.value.trim(),
+        form.optionB.value.trim(),
+        form.optionC.value.trim(),
+        form.optionD.value.trim()
+      ];
+
+      const correctIndex = ['A', 'B', 'C', 'D'].indexOf(form.correctAnswer.value);
+      const correctAnswer = options[correctIndex];
+
       const data = {
         question: form.question.value.trim(),
-        options: [
-          form.optionA.value.trim(),
-          form.optionB.value.trim(),
-          form.optionC.value.trim(),
-          form.optionD.value.trim()
-        ],
-        correctAnswer: form['option' + form.correctAnswer.value].value.trim(),
+        options,
+        correctAnswer,
         category: form.category.value
       };
 
-      const res = await fetch('/mcqs', {
+      const res = await fetch('https://gk-mcqs-backend.onrender.com/mcqs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -109,7 +116,7 @@
         form.reset();
         setTimeout(() => success.style.display = 'none', 3000);
       } else {
-        alert('Something went wrong.');
+        alert('❌ Something went wrong.');
       }
     });
   </script>
