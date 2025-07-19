@@ -1,36 +1,42 @@
 let allMcqs = [];
 let currentPage = 1;
 const mcqsPerPage = 10;
-let currentCategory = 'General Knowledge';
+
+// ✅ Read subject and topic from URL
+const urlParams = new URLSearchParams(window.location.search);
+const subject = urlParams.get('subject');
+const topic = urlParams.get('topic');
+
+// ✅ Update page title if you have one
+const titleElement = document.getElementById('page-title');
+if (titleElement) {
+  titleElement.textContent = `${subject} → ${topic}`;
+}
 
 // ✅ Fetching MCQs from backend
 fetch('https://gk-mcqs-backend.onrender.com/mcqs')
   .then(res => res.json())
   .then(data => {
-    allMcqs = data;
-    renderMCQs(currentCategory, currentPage);
+    allMcqs = data.filter(mcq => mcq.subject === subject && mcq.topic === topic);
+    renderMCQs(currentPage);
   })
   .catch(err => {
     console.error('Failed to load MCQs:', err);
     document.getElementById('mcqContainer').innerHTML = '<p>Error loading MCQs. Please try again later.</p>';
   });
 
-function renderMCQs(category, page) {
+function renderMCQs(page) {
   const mcqContainer = document.getElementById('mcqContainer');
   mcqContainer.innerHTML = '';
 
-  // ✅ Fixed: Filtering by subject
-  const filteredMcqs = allMcqs.filter(mcq => mcq.subject === category);
-
-  if (filteredMcqs.length === 0) {
+  if (allMcqs.length === 0) {
     mcqContainer.innerHTML = '<p>No MCQs available in this category.</p>';
     renderPagination(0, 1);
     return;
   }
 
   const start = (page - 1) * mcqsPerPage;
-  const end = start + mcqsPerPage;
-  const paginatedMcqs = filteredMcqs.slice(start, end);
+  const paginatedMcqs = allMcqs.slice(start, start + mcqsPerPage);
 
   paginatedMcqs.forEach((mcq, index) => {
     const div = document.createElement('div');
@@ -48,14 +54,14 @@ function renderMCQs(category, page) {
 
       li.addEventListener('click', () => {
         const existing = li.querySelector('.feedback');
-        if (existing) return; // Prevent multiple clicks
+        if (existing) return;
 
         const feedback = document.createElement('span');
         feedback.className = 'feedback';
         feedback.style.position = 'absolute';
         feedback.style.right = '15px';
         feedback.style.top = '50%';
-        feedback.style.transform = 'translateY(-50%)';
+        feedback.style.transform = 'translateY(-50%');
         feedback.style.fontWeight = 'bold';
         feedback.style.opacity = '0';
         feedback.style.transition = 'opacity 0.5s ease';
@@ -71,7 +77,7 @@ function renderMCQs(category, page) {
         }
 
         li.appendChild(feedback);
-        li.style.pointerEvents = 'none'; // Prevent re-clicking
+        li.style.pointerEvents = 'none';
         setTimeout(() => feedback.style.opacity = '1', 50);
       });
 
@@ -82,7 +88,7 @@ function renderMCQs(category, page) {
     mcqContainer.appendChild(div);
   });
 
-  renderPagination(filteredMcqs.length, page);
+  renderPagination(allMcqs.length, page);
 }
 
 function renderPagination(totalMcqs, currentPage) {
@@ -99,24 +105,9 @@ function renderPagination(totalMcqs, currentPage) {
     if (i === currentPage) btn.classList.add('active');
 
     btn.addEventListener('click', function() {
-      renderMCQs(currentCategory, i);
+      renderMCQs(i);
     });
 
     paginationContainer.appendChild(btn);
   }
 }
-
-// ✅ Handling tabs
-const tabs = document.querySelectorAll('.tab');
-tabs.forEach(tab => {
-  tab.addEventListener('click', function() {
-    tabs.forEach(t => t.classList.remove('active'));
-    this.classList.add('active');
-    currentCategory = this.getAttribute('data-category');
-    currentPage = 1;
-    renderMCQs(currentCategory, currentPage);
-  });
-});
-
-// ✅ Activate first tab on load
-document.querySelector('.tab[data-category="General Knowledge"]').classList.add('active');
