@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MCQs View — GK with Faisal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+  <h1>MCQs Practice</h1>
+  <p id="page-title">Loading...</p>
+</header>
+
+<div id="mcqContainer" class="mcq-container" style="padding: 40px;"></div>
+
+<div id="pagination" class="pagination" style="padding: 0 40px 40px;"></div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const subject = urlParams.get('subject');
+const topic = urlParams.get('topic');
+document.getElementById('page-title').innerText = `${subject} → ${topic}`;
+
+let allMcqs = [];
+let currentPage = 1;
+const mcqsPerPage = 10;
+
+fetch('https://gk-mcqs-backend.onrender.com/mcqs')
+  .then(res => res.json())
+  .then(data => {
+    allMcqs = data.filter(mcq => mcq.subject === subject && mcq.topic === topic);
+    renderMCQs(currentPage);
+  });
+
+function renderMCQs(page) {
+  const container = document.getElementById('mcqContainer');
+  container.innerHTML = '';
+  
+  if (!allMcqs.length) {
+    container.innerHTML = '<p>No MCQs available.</p>';
+    return;
+  }
+
+  const start = (page - 1) * mcqsPerPage;
+  const paginated = allMcqs.slice(start, start + mcqsPerPage);
+
+  paginated.forEach((mcq, idx) => {
+    const div = document.createElement('div');
+    div.className = 'mcq';
+
+    const questionClass = mcq.subject === 'Islamiyat' ? 'urdu-text' : '';
+    div.innerHTML = `<h3 class="${questionClass}">${start + idx + 1}. ${mcq.question}</h3>`;
+
+    const ol = document.createElement('ol');
+    mcq.options.forEach(opt => {
+      const li = document.createElement('li');
+      li.textContent = opt;
+      li.addEventListener('click', () => {
+        const feedback = document.createElement('span');
+        feedback.className = 'feedback';
+        feedback.style.marginLeft = '15px';
+        feedback.style.fontWeight = 'bold';
+
+        if (opt === mcq.correctAnswer) {
+          li.classList.add('correct');
+          feedback.textContent = 'Correct!';
+          feedback.style.color = '#28a745';
+        } else {
+          li.classList.add('wrong');
+          feedback.textContent = 'Incorrect!';
+          feedback.style.color = '#dc3545';
+        }
+
+        if (!li.querySelector('span')) li.appendChild(feedback);
+      });
+      ol.appendChild(li);
+    });
+
+    div.appendChild(ol);
+    container.appendChild(div);
+  });
+
+  renderPagination(allMcqs.length, page);
+}
+
+function renderPagination(total, current) {
+  const pagDiv = document.getElementById('pagination');
+  pagDiv.innerHTML = '';
+  const totalPages = Math.ceil(total / mcqsPerPage);
+  if (totalPages <= 1) return;
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.className = 'pagination-btn';
+    if (i === current) btn.classList.add('active');
+    btn.onclick = () => renderMCQs(i);
+    pagDiv.appendChild(btn);
+  }
+}
+</script>
+
+</body>
+</html>

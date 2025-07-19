@@ -3,23 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MCQs Quiz Website</title>
+  <title>GK with Faisal — Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>MCQs Practice</header>
+  <header class="main-header">
+    <h1>GK with Faisal</h1>
+    <p>Prepare MCQs for PPSC, FPSC, NTS and other exams</p>
+  </header>
 
-  <div class="tabs">
-    <button class="tab" data-category="General Knowledge">General Knowledge</button>
-    <button class="tab" data-category="Pakistan Studies">Pakistan Studies</button>
-    <button class="tab" data-category="Islamiyat">Islamiyat</button>
-  </div>
+  <section class="subjects-grid">
+    <!-- General Knowledge -->
+    <div class="subject-card">
+      <h2>General Knowledge</h2>
+      <p>5 Topics</p>
+      <div class="topics">
+        <div class="topic">
+          <span>Pakistan Affairs</span>
+          <div class="buttons">
+            <a href="mcqs-view.html?subject=General Knowledge&topic=Pakistan Affairs" class="btn">View MCQs</a>
+            <a href="quiz.html?subject=General Knowledge&topic=Pakistan Affairs" class="btn secondary">Take Quiz</a>
+          </div>
+        </div>
+        <div class="topic">
+          <span>World GK</span>
+          <div class="buttons">
+            <a href="mcqs-view.html?subject=General Knowledge&topic=World GK" class="btn">View MCQs</a>
+            <a href="quiz.html?subject=General Knowledge&topic=World GK" class="btn secondary">Take Quiz</a>
+          </div>
+        </div>
+        <!-- Add more topics similarly -->
+      </div>
+    </div>
 
-  <div id="mcqContainer" class="mcq-container"></div>
+    <!-- Pakistan Studies -->
+    <div class="subject-card">
+      <h2>Pakistan Studies</h2>
+      <p>5 Topics</p>
+      <div class="topics">
+        <div class="topic">
+          <span>History</span>
+          <div class="buttons">
+            <a href="mcqs-view.html?subject=Pakistan Studies&topic=History" class="btn">View MCQs</a>
+            <a href="quiz.html?subject=Pakistan Studies&topic=History" class="btn secondary">Take Quiz</a>
+          </div>
+        </div>
+        <div class="topic">
+          <span>Geography</span>
+          <div class="buttons">
+            <a href="mcqs-view.html?subject=Pakistan Studies&topic=Geography" class="btn">View MCQs</a>
+            <a href="quiz.html?subject=Pakistan Studies&topic=Geography" class="btn secondary">Take Quiz</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div id="pagination" class="pagination"></div>
+    <!-- Islamiyat -->
+    <div class="subject-card">
+      <h2>Islamiyat</h2>
+      <p>3 Topics</p>
+      <div class="topics">
+        <div class="topic">
+          <span>Basic Pillars</span>
+          <div class="buttons">
+            <a href="mcqs-view.html?subject=Islamiyat&topic=Basic Pillars" class="btn">View MCQs</a>
+            <a href="quiz.html?subject=Islamiyat&topic=Basic Pillars" class="btn secondary">Take Quiz</a>
+          </div>
+        </div>
+        <div class="topic">
+          <span>Islamic History</span>
+          <div class="buttons">
+            <a href="mcqs-view.html?subject=Islamiyat&topic=Islamic History" class="btn">View MCQs</a>
+            <a href="quiz.html?subject=Islamiyat&topic=Islamic History" class="btn secondary">Take Quiz</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <script src="script.js"></script>
+    <!-- More subjects can be added here -->
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 GK with Faisal. All rights reserved.</p>
+    <p><a href="mcqs-addition.html">Admin Panel</a></p>
+  </footer>
 </body>
 </html>
