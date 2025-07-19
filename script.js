@@ -3,18 +3,24 @@ let currentPage = 1;
 const mcqsPerPage = 10;
 let currentCategory = 'General Knowledge';
 
+// ✅ Fetching MCQs from backend
 fetch('https://gk-mcqs-backend.onrender.com/mcqs')
   .then(res => res.json())
   .then(data => {
     allMcqs = data;
     renderMCQs(currentCategory, currentPage);
+  })
+  .catch(err => {
+    console.error('Failed to load MCQs:', err);
+    document.getElementById('mcqContainer').innerHTML = '<p>Error loading MCQs. Please try again later.</p>';
   });
 
 function renderMCQs(category, page) {
   const mcqContainer = document.getElementById('mcqContainer');
   mcqContainer.innerHTML = '';
 
-  const filteredMcqs = allMcqs.filter(mcq => mcq.category === category);
+  // ✅ Fixed: Filtering by subject
+  const filteredMcqs = allMcqs.filter(mcq => mcq.subject === category);
 
   if (filteredMcqs.length === 0) {
     mcqContainer.innerHTML = '<p>No MCQs available in this category.</p>';
@@ -30,7 +36,7 @@ function renderMCQs(category, page) {
     const div = document.createElement('div');
     div.className = 'mcq';
 
-    const questionClass = mcq.category === 'Islamiyat' ? 'urdu-text' : '';
+    const questionClass = mcq.subject === 'Islamiyat' ? 'urdu-text' : '';
     div.innerHTML = `<h3 class="${questionClass}">${start + index + 1}. ${mcq.question}</h3>`;
 
     const ol = document.createElement('ol');
@@ -54,7 +60,6 @@ function renderMCQs(category, page) {
         feedback.style.opacity = '0';
         feedback.style.transition = 'opacity 0.5s ease';
 
-        // ✅ Trim both option and answer to avoid whitespace errors
         if (li.textContent.trim() === mcq.correctAnswer.trim()) {
           li.classList.add('correct');
           feedback.textContent = 'Correct!';
@@ -66,7 +71,7 @@ function renderMCQs(category, page) {
         }
 
         li.appendChild(feedback);
-        li.style.pointerEvents = 'none'; // ✅ Prevent re-clicking
+        li.style.pointerEvents = 'none'; // Prevent re-clicking
         setTimeout(() => feedback.style.opacity = '1', 50);
       });
 
@@ -101,6 +106,7 @@ function renderPagination(totalMcqs, currentPage) {
   }
 }
 
+// ✅ Handling tabs
 const tabs = document.querySelectorAll('.tab');
 tabs.forEach(tab => {
   tab.addEventListener('click', function() {
