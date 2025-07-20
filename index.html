@@ -1,92 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GK with Faisal — Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>GK with Faisal | Focused Exam Prep for PPSC, FPSC</title>
+  <meta name="description" content="The best place to prepare for competitive exams in Pakistan. Clean, fast, and ad-free MCQs for PPSC, FPSC, NTS, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <header class="main-header">
-    <h1>GK with Faisal</h1>
-    <p>Prepare MCQs for PPSC, FPSC, NTS and other exams</p>
+
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">GK with Faisal</a>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="mcqs.html" class="nav-link">All MCQs</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <section class="subjects-grid">
-    <!-- General Knowledge -->
-    <div class="subject-card">
-      <h2>General Knowledge</h2>
-      <p>5 Topics</p>
-      <div class="topics">
-        <div class="topic">
-          <span>Pakistan Affairs</span>
-          <div class="buttons">
-            <a href="mcqs-view.html?subject=General Knowledge&topic=Pakistan Affairs" class="btn">View MCQs</a>
-            <a href="quiz.html?subject=General Knowledge&topic=Pakistan Affairs" class="btn secondary">Take Quiz</a>
-          </div>
-        </div>
-        <div class="topic">
-          <span>World GK</span>
-          <div class="buttons">
-            <a href="mcqs-view.html?subject=General Knowledge&topic=World GK" class="btn">View MCQs</a>
-            <a href="quiz.html?subject=General Knowledge&topic=World GK" class="btn secondary">Take Quiz</a>
-          </div>
-        </div>
-        <!-- Add more topics similarly -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">Focused Exam Prep for Pakistan</h1>
+        <p class="hero-subtitle">Clean, simple, and effective MCQ preparation for PPSC, FPSC, NTS, and all competitive exams.</p>
+        <a href="#subjects" class="btn btn--primary">Start Learning</a>
       </div>
-    </div>
+    </section>
 
-    <!-- Pakistan Studies -->
-    <div class="subject-card">
-      <h2>Pakistan Studies</h2>
-      <p>5 Topics</p>
-      <div class="topics">
-        <div class="topic">
-          <span>History</span>
-          <div class="buttons">
-            <a href="mcqs-view.html?subject=Pakistan Studies&topic=History" class="btn">View MCQs</a>
-            <a href="quiz.html?subject=Pakistan Studies&topic=History" class="btn secondary">Take Quiz</a>
-          </div>
-        </div>
-        <div class="topic">
-          <span>Geography</span>
-          <div class="buttons">
-            <a href="mcqs-view.html?subject=Pakistan Studies&topic=Geography" class="btn">View MCQs</a>
-            <a href="quiz.html?subject=Pakistan Studies&topic=Geography" class="btn secondary">Take Quiz</a>
-          </div>
+    <section id="subjects" class="subjects-section">
+      <div class="container">
+        <h2 class="section-title">Explore Subjects</h2>
+        <div class="subjects-grid">
+          <article class="subject-card">
+            <header class="subject-card__header"><h3 class="subject-card__title">General Knowledge</h3><div class="subject-card__meta"><span>5 Topics</span><svg class="expand-topics-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div></header>
+            <div class="topics" id="gk-topics">
+              <a href="mcqs.html?subject=gk&topic=pakistan-affairs" class="topic">Pakistan Affairs <span class="topic-arrow">&rarr;</span></a><a href="mcqs.html?subject=gk&topic=world-gk" class="topic">World GK <span class="topic-arrow">&rarr;</span></a><a href="mcqs.html?subject=gk&topic=current-affairs" class="topic">Current Affairs <span class="topic-arrow">&rarr;</span></a><a href="mcqs.html?subject=gk&topic=geography" class="topic">Geography <span class="topic-arrow">&rarr;</span></a><a href="mcqs.html?subject=gk&topic=everyday-science" class="topic">Everyday Science <span class="topic-arrow">&rarr;</span></a>
+            </div>
+          </article>
+          <article class="subject-card">
+            <header class="subject-card__header"><h3 class="subject-card__title">Pakistan Studies</h3><div class="subject-card__meta"><span>4 Topics</span><svg class="expand-topics-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div></header>
+            <div class="topics" id="ps-topics">
+              <a href="mcqs.html?subject=ps&topic=pre-partition" class="topic">Pre-Partition History <span class="topic-arrow">&rarr;</span></a><a href="mcqs.html?subject=ps&topic=post-partition" class="topic">Post-Partition History <span class="topic-arrow">&rarr;</span></a><a href="mcqs.html?subject=ps&topic=constitution" class="topic">Constitution of Pakistan <span class="topic-arrow">&rarr;</span></a><a href="mcqs.html?subject=ps&topic=foreign-policy" class="topic">Foreign Policy <span class="topic-arrow">&rarr;</span></a>
+            </div>
+          </article>
+          <article class="subject-card">
+            <header class="subject-card__header"><h3 class="subject-card__title">Islamiyat</h3><div class="subject-card__meta"><span>6 Topics</span><svg class="expand-topics-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div></header>
+            <div class="topics" id="isl-topics">
+               <a href="mcqs.html?subject=isl&topic=quran" class="topic">Holy Quran <span class="topic-arrow">&rarr;</span></a><a href="mcqs.html?subject=isl&topic=prophets" class="topic">Prophets of Islam <span class="topic-arrow">&rarr;</span></a><a href="mcqs.html?subject=isl&topic=pillars" class="topic">Pillars of Islam <span class="topic-arrow">&rarr;</span></a>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
-
-    <!-- Islamiyat -->
-    <div class="subject-card">
-      <h2>Islamiyat</h2>
-      <p>3 Topics</p>
-      <div class="topics">
-        <div class="topic">
-          <span>Basic Pillars</span>
-          <div class="buttons">
-            <a href="mcqs-view.html?subject=Islamiyat&topic=Basic Pillars" class="btn">View MCQs</a>
-            <a href="quiz.html?subject=Islamiyat&topic=Basic Pillars" class="btn secondary">Take Quiz</a>
-          </div>
-        </div>
-        <div class="topic">
-          <span>Islamic History</span>
-          <div class="buttons">
-            <a href="mcqs-view.html?subject=Islamiyat&topic=Islamic History" class="btn">View MCQs</a>
-            <a href="quiz.html?subject=Islamiyat&topic=Islamic History" class="btn secondary">Take Quiz</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- More subjects can be added here -->
-  </section>
-
-  <footer class="footer">
-    <p>&copy; 2025 GK with Faisal. All rights reserved.</p>
-    <p><a href="mcqs-addition.html">Admin Panel</a></p>
-  </footer>
+    </section>
+  </main>
+  
+  <footer class="site-footer-bottom"><div class="container"><p>&copy; 2025 GK with Faisal. All Rights Reserved.</p><div class="footer-links"><a href="#">YouTube</a><a href="#">Facebook</a></div></div></footer>
 </body>
 </html>

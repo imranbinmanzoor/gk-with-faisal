@@ -1,0 +1,47 @@
+{
+  "generalKnowledge": {
+    "name": "General Knowledge",
+    "topics": {
+      "worldGK": {
+        "name": "World GK",
+        "mcqs": [
+          {
+            "question": "Which country is known as the 'Land of the Rising Sun'?",
+            "options": ["China", "South Korea", "Japan", "Thailand"],
+            "answer": 2
+          },
+          {
+            "question": "The longest river in the world is the:",
+            "options": ["Amazon River", "Nile River", "Yangtze River", "Indus River"],
+            "answer": 1
+          }
+        ]
+      },
+      "pakistanAffairs": {
+        "name": "Pakistan Affairs",
+        "mcqs": [
+          {
+            "question": "When did Pakistan become a republic?",
+            "options": ["1947", "1956", "1971", "1973"],
+            "answer": 1
+          }
+        ]
+      }
+    }
+  },
+  "english": {
+    "name": "English",
+    "topics": {
+      "synonyms": {
+        "name": "Synonyms",
+        "mcqs": [
+          {
+            "question": "What is a synonym for 'Happy'?",
+            "options": ["Sorrowful", "Joyful", "Angry", "Tired"],
+            "answer": 1
+          }
+        ]
+      }
+    }
+  }
+}
